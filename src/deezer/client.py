@@ -563,6 +563,27 @@ class Client:
             bpm_min=bpm_min,
             bpm_max=bpm_max,
         )
+    
+    def search_podcasts(
+        self,
+        query: str = "",
+        strict: bool | None = None,
+        ordering: str | None = None,
+    ) -> PaginatedList[Podcast]:
+        """
+        Search albums matching the given query.
+
+        :param query: the query to search for, this is directly passed as q query.
+        :param strict: whether to disable fuzzy search and enable strict mode.
+        :param ordering: see Deezer API docs for possible values.
+        :return: list of :class:`~deezer.Album` instances.
+        """
+        return self._search(
+            path="podcast",
+            query=query,
+            strict=strict,
+            ordering=ordering,
+        )
 
     def search_albums(
         self,
